@@ -130,10 +130,10 @@ int main(int argc, char** argv)
 //Prompt ~helper method
 void greetingMsg()
 {
-	cout << "Welcome to the Roman Numeral Conversion Utility!" << endl;
+	cout << "~~~~~~~~~~~~ Roman Numeral Conversion Utility - Advanced C++ Week 1 ~~~~~~~~~~~~" << endl;
 	cout << "\nSelect an option: " << endl;
-	cout << "\tEnter (1) to convert from Roman to Decimal " << endl;
-	cout << "\tEnter (2) to convert from Decimal to Roman " << endl;
+	cout << "\tEnter (1) to convert from Roman numerial to Decimal " << endl;
+	cout << "\tEnter (2) to convert from Decimal to Roman numerial" << endl;
 	cout << "\tEnter (3) to exit the program\n " << endl;
 	cout << "Please, make a selection: ";
 }//eoFunc1
