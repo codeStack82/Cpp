@@ -51,7 +51,7 @@ int main(int argc, char** argv)
 	if (argc > 0)
 	{
 		//TODO: not needed for this assn
-		//userSelection = argv[0];
+		userSelection = argv[0];
 
 	}
 
@@ -71,8 +71,7 @@ int main(int argc, char** argv)
 		menuSelection = get_NumInput();
 
 		//Process input
-		if (menuSelection == 1)
-		{
+		if (menuSelection == 1){
 			//Display directions
 			cout << "Please, enter a number to convert between (1 - 3999) : ";
 
@@ -91,8 +90,7 @@ int main(int argc, char** argv)
 				userSelection = moreConversions();
 			}
 		}
-		else if (menuSelection == 2)
-		{
+		else if (menuSelection == 2){
 			//Display directions
 			cout << "Please, enter a Roman Numeral to convert : ";
 
@@ -111,22 +109,19 @@ int main(int argc, char** argv)
 				userSelection = moreConversions();
 			}
 		}
-		else if (menuSelection == 3)
-		{
+		else if (menuSelection == 3){
 			//Display directions
 			cout << "Thanks for using the Roman Numerial Coversion calculator! " << endl;
 			userSelection = "n";
 		}
-		else
-		{
+		else{
 			cout << "Apparently, you didn't read the instructions....?" << endl;
 			cout << "Please try again....or not!" << endl;
 		}
-
 	} while (userSelection == "y");
 
 	return 0;
-}//eoMain
+}
 
 //Prompt ~helper method
 void greetingMsg()
@@ -177,11 +172,11 @@ string moreConversions()
 }
 
 //Prompt for integer ~helper method
-int get_NumInput()
-{
+int get_NumInput(){
 	//Contract 
 		//Get user number input
 		//Catch error if not valid and exit
+		//@return 
 
 	string in = "";
 	int input = 0;
@@ -194,7 +189,7 @@ int get_NumInput()
 		input = atoi(in.c_str());
 
 	}
-	catch (exception e) {
+	catch (Exception e) {
 		//Handle exception
 		cout << "\tApparently, you didn't read the instructions....?" << endl;
 		cout << "\tPlease try again....or not!" << endl;
@@ -203,8 +198,7 @@ int get_NumInput()
 }
 
 //Prompt fro string ~helper method
-string get_StrInput()
-{
+string get_StrInput(){
 	//Contract 
 	//Get user number input
 	//Catch error if not valid and exit
@@ -262,8 +256,7 @@ string toUpper(string str) {
 }
 
 //Method: Convert value from Decimal to Roman
-bool convertDecimalToRoman(int dec, string& romanValue)
-{
+bool convertDecimalToRoman(int dec, string& romanValue){
 	//Contract: 
 	//Input -> decimal value and string value
 	//Check values for validity
@@ -307,8 +300,7 @@ bool convertDecimalToRoman(int dec, string& romanValue)
 }
 
 //Method: Convert value from Roman to Decimal
-bool convertRomanToDecimal(string input, int& decimalValue)
-{
+bool convertRomanToDecimal(string input, int& decimalValue){
 	//Contract: 
 	//Input -> decimal value and string value
 	//Return boolean if is valid and pass string back via reference
