@@ -38,6 +38,7 @@ bool convertRomanToDecimal(string str, int& dec);
 //Method: Convert Decimal to Roman
 bool convertDecimalToRoman(int dec, string& romanValue);
 
+//Main
 int main(int argc, char** argv)
 {
 	//Hold reference values (Roman Numerals and Decimal values)
@@ -136,7 +137,7 @@ void greetingMsg()
 	cout << "\tEnter (2) to convert from Decimal to Roman numerial" << endl;
 	cout << "\tEnter (3) to exit the program\n " << endl;
 	cout << "Please, make a selection: ";
-}//eoFunc1
+}
 
 //Prompt for boolean ~helper method
 string moreConversions()
@@ -173,7 +174,7 @@ string moreConversions()
 		cout << "\tPlease try again....or not!" << endl;
 	}
 	return answer;
-}//eoFunc2
+}
 
 //Prompt for integer ~helper method
 int get_NumInput()
@@ -199,7 +200,7 @@ int get_NumInput()
 		cout << "\tPlease try again....or not!" << endl;
 	}
 	return input;
-}//eoFunc3
+}
 
 //Prompt fro string ~helper method
 string get_StrInput()
@@ -225,7 +226,7 @@ string get_StrInput()
 		cout << "\tPlease try again....or not!" << endl;
 	}
 	return output;
-}//eoFunc4
+}
 
 //Method  ~helper method
 int indexOf(char c) {
@@ -238,7 +239,7 @@ int indexOf(char c) {
 		}
 	}
 	return -1;
-}//eoFunc5
+}
 
 //Method ~helper method
 string toUpper(string str) {
@@ -258,7 +259,7 @@ string toUpper(string str) {
 		}
 	}
 	return result;
-}//eoFunc6
+}
 
 //Method: Convert value from Decimal to Roman
 bool convertDecimalToRoman(int dec, string& romanValue)
@@ -303,7 +304,7 @@ bool convertDecimalToRoman(int dec, string& romanValue)
 		isValid = true;
 	}
 	return isValid;
-}//eoFunc7
+}
 
 //Method: Convert value from Roman to Decimal
 bool convertRomanToDecimal(string input, int& decimalValue)
@@ -352,4 +353,4 @@ bool convertRomanToDecimal(string input, int& decimalValue)
 		cout << "There must have been an error!" << endl;
 	}
 	return isValid;
-}//eoFunc8
+}
