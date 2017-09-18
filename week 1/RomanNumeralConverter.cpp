@@ -14,6 +14,11 @@
 
 using namespace std;
 
+//TODO: to test if inputs are valid
+	//add bool isValid_RN
+	//add bool isValid_Decimal
+
+
 //Greeting message
 void greetingMsg();
 
@@ -277,7 +282,6 @@ bool convertDecimalToRoman(int dec, string& romanValue){
 		cout << "The number you entered is not a valid input!" << endl;
 	}
 	else {
-
 		int work = num;
 		while (work > 0) {  //while work to do and > 0                        
 			for (int i = 0; i<SIZE; i++) {

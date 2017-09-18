@@ -1,0 +1,48 @@
+
+
+
+
+
+
+
+
+
+// int getInput()
+// {    //Contract 
+//         //  @notes:     determines where input is coming from then get user input
+//         //  @param      cahr argv[], cmd line input value 
+//         //  @param      isCmd, check if argc = 1
+//         //  @return     bool, predicate
+
+//     bool isCmdArgs = false;
+//     int result = 0; 
+
+//     //Check if is command line
+//     //isCmdArgs = isCmdLine(argc);
+
+//     if(isCmdArgs){
+//         int num =  1;  //atoi(argv[0].c_str());  //todo: need to fix cmd line input
+//         result = num;
+//     }else{
+//         result = getManualInput();
+//     }
+
+//     return result;
+// }
+
+
+
+
+bool isCmdLine(int argc)
+{   //Contract 
+        //  @notes:     Check to see if user started progam with cmd inputs
+        //  @param      argc[], cmd line input value 
+        //  @param      isCmd, check if argc = 1
+        //  @return     bool, predicate
+
+    bool result = false;
+    if(argc == 1){
+        result = true;
+    }
+    return result;
+}
