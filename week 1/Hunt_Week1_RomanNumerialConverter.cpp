@@ -314,10 +314,10 @@ bool convertRomanToDecimal(string input, int& decimalValue)
 				break;
 			case 'D':	decimalValue += 500;
 				break;
-			case 'C': 	if(i > 0 && i < input.length() && input[i+1] == 'M'){		//test for CM += 900
+			case 'C': 	if(i < input.length() && input[i+1] == 'M'){		//test for CM += 900
 							decimalValue += 900;
 							i++;	//skip numerial
-						}else if(i > 0 && i < input.length() && input[i+1] == 'D'){ //test for CD += 400
+						}else if(i < input.length() && input[i+1] == 'D'){ //test for CD += 400
 							decimalValue += 400;
 							i++; 	//skip numerial
 						}
@@ -325,10 +325,10 @@ bool convertRomanToDecimal(string input, int& decimalValue)
 				break;
 			case 'L': 	decimalValue += 50;	
 				break;
-			case 'X': 	if(i > 0 && i < input.length() && input[i+1] == 'C'){		//test for XC += 90
+			case 'X': 	if( i < input.length() && input[i+1] == 'C'){		//test for XC += 90
 							decimalValue += 90;
 							i++;	//skip numerial
-						}else if(i > 0 && i < input.length() && input[i+1] == 'L'){ //test for XL += 40
+						}else if(i < input.length() && input[i+1] == 'L'){ //test for XL += 40
 							decimalValue += 40;
 							i++; 	//skip numerial
 						}
@@ -336,10 +336,10 @@ bool convertRomanToDecimal(string input, int& decimalValue)
 				break;
 			case 'V': 	decimalValue += 5;
 				break;
-			case 'I': 	if(i > 0 && i < input.length() && input[i+1] == 'X'){		//test for IX += 9
+			case 'I': 	if(i < input.length() && input[i+1] == 'X'){		//test for IX += 9
 							decimalValue += 9;
 							i++;	//skip numerial
-						}else if(i > 0 && i < input.length() && input[i+1] == 'V'){ //test for IV += 4
+						}else if(i < input.length() && input[i+1] == 'V'){ //test for IV += 4
 							decimalValue += 4;
 							i++; 	//skip numerial
 						}
