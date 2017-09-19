@@ -37,7 +37,5 @@ int main(){
 		cout << i << ": " << v2[i] << endl; 
 	}
 
-
-	
 	return EXIT_SUCCESS; //default successful execution
 }
