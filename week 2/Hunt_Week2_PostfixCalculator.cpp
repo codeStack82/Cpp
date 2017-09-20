@@ -5,8 +5,8 @@
 * Assignment 2 - PostFix Calculator
 * Due: 9/17/17
 *Reference material
-*	https://www.tutorialspoint.com/cplusplus/passing_parameters_by_references.htm
-*	https://quizlet.com/2317378/random-roman-numerals-flash-cards/
+*	http://www.cs.nthu.edu.tw/~wkhon/ds/ds10/tutorial/tutorial2.pdf
+*   http://www.cs.csi.cuny.edu/~zelikovi/csc326/data/assignment5.htm
 */
 
 #include <cstdlib>
@@ -30,8 +30,12 @@ int convertToInt(string num);
 
 vector<string> addToVector(string input);
 void printVector(vector<string> tokens);
+void printVector(vector<int> tokens);
 
-void performPostfixCalc();
+bool checkToken(string nextToken);
+
+
+int performPostfixCalc(int res1, int res2, char operand);
 
 
 
@@ -42,13 +46,14 @@ int main(int argc, char** argv)
     greetingMsg();
 
     // Test input values 
-    //5 4 + 3 10 * +	
+    // 5 4 + 3 10 * +	
 
     //Process user menu selection(s)
     string moreCalcs = "n";
     string input = "";
     int menuSelection = getMenuSelection();
     vector<string> tokens;
+    vector<int> results;
 
 
     do{
@@ -59,24 +64,56 @@ int main(int argc, char** argv)
 
             string input = getStrInput();
             tokens = addToVector(input); 
-                // printVector(tokens);
+            //printVector(tokens);
+         
+            for(int i = 0; i < tokens.size(); i++){
+                //Get nextToken
+                string nextToken = tokens[i];
 
-            for(string i : tokens){
+                bool isOperator = checkToken(nextToken);
 
-                bool isOperand = isNum(i);
-                bool isOperator = is
-                //check token
-                if(isOperand){
+                if(isOperator){ // + - * / %
+                    cout << "isOperator: " << isOperator << " : " << nextToken << endl;
+                    char nextOperator = nextToken[0];
 
-                }else if(isOperator){
+                    // Test Cases 
+                        // 5 4 + 3 10 * +            39
+                        // +5 -4 + 3 10 * +          31
+                        // 4 5 7 2 + - *            -16
+                        // 3 4 + 2  * 7 /             2
+                        // 5 7 + 6 2 -  *            48
+                        // 4 2 3 5 1 - + * +         18
+                        // 4 2 + 3 5 1 -  * +        18
+                        // 2 3 4 + * 6 -              8
+                        // 10 5 % 2 +                 4
 
+                    if(results.size() >= 2){
+                        int res1 = results.back();
+                            results.pop_back();
+                            cout << "\ttoken popped: " << res1 << endl;
+
+                        int res2 = results.back();
+                            results.pop_back();
+                            cout << "\ttoken popped: " << res2 << endl;
+
+                        int result = performPostfixCalc(res1, res2, nextOperator);
+                        cout << "\tCalc'd: " << res1 << " " << nextOperator << " " << res2 <<  " = " << result << endl;
+                        results.push_back(result);
+                        printVector(results);
+                    }
+                }else if(!isOperator){
+                    cout << "isOperator: " << isOperator << " : " << nextToken << endl;
+
+                    //convert and push token
+                    int token = convertToInt(nextToken);
+                    results.push_back(token);               //push token
                 }
-                
-                cout << "tokens = " << i << endl;
-            }
 
-        }else{
+            }//eoFor
 
+           cout << "Final result: " << results[0] << endl;
+            results.clear();
+           cout << endl;
         }
 
         //Check to see if user want to continue testing other strings
@@ -169,11 +206,7 @@ string moreConversions()
 
 	try {
 		//Get user input
-		cout << "Would you like perform another postfix calculation?" << endl;
-		cout << "\t-Enter (y) to perform another postfix calculations" << endl;
-		cout << "\t-Enter (n) to exit the program" << endl;
-		cout << "Please, make your selection: ";
-
+		cout << "Would you like perform another postfix calculation? (y or n): ";
 		cin >> in;
 
 		if (in == "n" || in == "N") {
@@ -216,21 +249,6 @@ int convertToInt(string num)
 	return input;
 }
 
-int performPostfixCalc(string token)
-{ //Contract 
-        //  @notes:     Accepts token and 
-        //  @param      int input, input num
-        //  @return     int, number
-        
-
-        if(isOperand){
-
-        }else if(isOperator){
-
-        }
-
-}
-
 vector<string> addToVector(string input)
 {  //Contract 
         //  @notes:     pushes string into vector as tokens
@@ -247,12 +265,80 @@ vector<string> addToVector(string input)
     return tokens;
 }
 
+bool checkToken(string nextToken)
+{ //Contract 
+    //  @notes:     checks if is Operand
+    //  @return     bool, token
+
+    bool isValid = false;
+
+    //Test if string length is > 1 (i.e. not a -9, +16, 50)
+    if(nextToken.length() > 1){
+        isValid = false;
+        return isValid;
+    }
+
+    char testToken = nextToken[0];
+
+    switch(testToken){
+        case '+' : isValid = true; 
+            break;
+        case '-' : isValid = true; 
+            break;
+        case '*' : isValid = true; 
+            break;
+        case '/' : isValid = true; 
+            break;
+        case '%' : isValid = true; 
+            break;
+        default :
+            isValid = false; 
+    }
+
+    return isValid;
+}
+
+int performPostfixCalc(int res1, int res2, char operand)
+  {//Contract 
+    //  @notes:     performs math logic on results
+    //  @return     int, result
+
+    int result = 0;
+
+    switch(operand){
+        case '+' :  result = res2 + res1;
+            break;
+        case '-' :  result = res2 - res1;
+            break;
+        case '*' :  result = res2 * res1;
+            break;
+        case '/' :  result = res2 / res1;
+            break;
+        case '%' :  result = res2 % res1;
+            break;
+        default :
+            result = 0; 
+    }
+    return result;
+}
+
 void printVector(vector<string> tokens)
 {  //Contract 
         //  @notes:     prints vector contents
         //  @return     void
 
-    for(string i : tokens){
-        cout << "tokens = " << i << endl;
+    for(int i =0; i < tokens.size(); i++){
+        cout << "tokens = " << tokens[i] << endl;
     }
+}
+
+void printVector(vector<int> tokens)
+{  //Contract 
+        //  @notes:     prints vector contents
+        //  @return     void
+    cout << "\ttokens = ";
+    for(int i =0; i < tokens.size(); i++){
+        cout << tokens[i] << " ";
+    }
+     cout << endl;
 }
