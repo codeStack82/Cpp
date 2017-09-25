@@ -3,7 +3,7 @@
 * Advanved C++
 * OCCC Fall 2017
 * Assignment 2 - PostFix Calculator
-* Due: 9/17/17
+* Due: 9/24/17
 *Reference material
 *	http://www.cs.nthu.edu.tw/~wkhon/ds/ds10/tutorial/tutorial2.pdf
 *   http://www.cs.csi.cuny.edu/~zelikovi/csc326/data/assignment5.htm
@@ -45,9 +45,6 @@ int main(int argc, char** argv)
     //Display greeting message
     greetingMsg();
 
-    // Test input values 
-    // 5 4 + 3 10 * +	
-
     //Process user menu selection(s)
     string moreCalcs = "n";
     string input = "";
@@ -65,44 +62,46 @@ int main(int argc, char** argv)
             string input = getStrInput();
             tokens = addToVector(input); 
             //printVector(tokens);
-         
+
+            // Test Cases ~~~~~~~~~~~~~~~~~~~~~~
+                // 5 4 + 3 10 * +                   39
+                // +5 -4 + 3 10 * +                 31
+                // 4 5 7 2 + - *                    -16
+                // 3 4 + 2  * 7 /                   2
+                // 5 7 + 6 2 -  *                   48
+                // 4 2 3 5 1 - + * +                18
+                // 4 2 + 3 5 1 -  * +               18
+                // 2 3 4 + * 6 -                    8
+                // 10 5 % 2 +                       4
+                // 4 +56 8 3 -9 1 67 + * % - / *    44
+            // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
             for(int i = 0; i < tokens.size(); i++){
-                //Get nextToken
+                // Get nextToken
                 string nextToken = tokens[i];
 
                 bool isOperator = checkToken(nextToken);
 
                 if(isOperator){ // + - * / %
-                    cout << "isOperator: " << isOperator << " : " << nextToken << endl;
+                    // cout << "isOperator: " << isOperator << " : " << nextToken << endl;
                     char nextOperator = nextToken[0];
-
-                    // Test Cases 
-                        // 5 4 + 3 10 * +            39
-                        // +5 -4 + 3 10 * +          31
-                        // 4 5 7 2 + - *            -16
-                        // 3 4 + 2  * 7 /             2
-                        // 5 7 + 6 2 -  *            48
-                        // 4 2 3 5 1 - + * +         18
-                        // 4 2 + 3 5 1 -  * +        18
-                        // 2 3 4 + * 6 -              8
-                        // 10 5 % 2 +                 4
 
                     if(results.size() >= 2){
                         int res1 = results.back();
                             results.pop_back();
-                            cout << "\ttoken popped: " << res1 << endl;
+                                // cout << "\ttoken popped: " << res1 << endl;
 
                         int res2 = results.back();
                             results.pop_back();
-                            cout << "\ttoken popped: " << res2 << endl;
+                                // cout << "\ttoken popped: " << res2 << endl;
 
                         int result = performPostfixCalc(res1, res2, nextOperator);
-                        cout << "\tCalc'd: " << res1 << " " << nextOperator << " " << res2 <<  " = " << result << endl;
+                            // cout << "\tCalc'd: " << res2 << " " << nextOperator << " " << res1 <<  " = " << result << endl;
                         results.push_back(result);
-                        printVector(results);
+                            // printVector(results);
                     }
                 }else if(!isOperator){
-                    cout << "isOperator: " << isOperator << " : " << nextToken << endl;
+                    //cout << "isOperator: " << isOperator << " : " << nextToken << endl;
 
                     //convert and push token
                     int token = convertToInt(nextToken);
@@ -111,9 +110,9 @@ int main(int argc, char** argv)
 
             }//eoFor
 
-           cout << "Final result: " << results[0] << endl;
+            cout << "Final result: " << results[0] << endl;
             results.clear();
-           cout << endl;
+            cout << endl;
         }
 
         //Check to see if user want to continue testing other strings
@@ -137,8 +136,8 @@ int getMenuSelection()
         //  @return     int, user selection
 
     cout << "\nSelect an option: " << endl;
-	cout << "\t-Enter (1) to calculate a PostFix string" << endl;
-	cout << "\t-Enter (2) to exit the program" << endl;
+	cout << "\t-Enter (1) to calculate a postfix string" << endl;
+	cout << "\t-Enter (0) to exit the program" << endl;
 	cout << "Please, make a selection: ";
 
     int option = menuSelection();
