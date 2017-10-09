@@ -20,7 +20,6 @@ bool isPalindrome(char * input);
 int main(int argc, char * argv[]){
 
     cout << "\n~~~~~~~~~~~~ Palindrome Homework - Advanced C++ Week 4 ~~~~~~~~~~~~" << endl;
-
     string input;       
 
     if(argc >= 2){     
@@ -29,7 +28,7 @@ int main(int argc, char * argv[]){
             input.append(" ");
         }
     }else{
-        cout << "Enter a palindrome: ";
+        cout << "Please, enter a palindrome: ";
         getline(cin, input);
     }
 

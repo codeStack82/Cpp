@@ -83,11 +83,12 @@ uint64_t fact_loop(int n){
 }
 
 uint64_t fact_rec(int n){
-    uint64_t result; 
-    if(n > 0){
-        result = n * fact_rec(n - 1);
-    }
-    return result;
+    uint64_t temp; 
+
+	if(n <= 1) return 1;
+
+	temp = n * fact_rec(n - 1);
+	return temp;
 }
 
 uint64_t fib_loop(int n){
