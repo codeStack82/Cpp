@@ -1,0 +1,103 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\froman\fcharset0 TimesNewRomanPSMT;}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;}
+{\*\expandedcolortbl;;\csgenericrgb\c100000\c0\c0;}
+\margl1440\margr1440\vieww9940\viewh15760\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 			Simple Sorts:				\'93quadratic\'94	\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97		\
+			# of comparisons		|	# of exchanges		\
+exchange sort	n(n-1)/2			|	= #of inversions		theta(n^2)\
+insertion sort		about = inversions + n	| 	= #of inversions		O(n^2)\
+selection sort		n(n-1)/2			|	<=n				\
+Simple sorts are \'93Stable\'94 and \'93Physical\'94 and \'93local\'94\
+\
+cache controller - \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 			Advanced Sorts:			\'93nLogn\'94	\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Quick Sort	theta(nlgn)	\
+	-Make sure to understand the quick sort algorithm \
+	-Quick Sort is  the standard recursive sort\
+	-how many passes will it take to sort a list with quick sort - log2 of the list\
+		1000 items = 10 passes Log
+\fs20 2
+\fs24 \
+\
+	**Get to know this stuff for the exam\
+		-QS has a pivot pointer and free pointer\
+		computer candidate s to compute the median value as  = (last - first )/2 + first \
+\
+	
+\f1 10  45   23   7   64   88   43  10   43   19   2   57   84   26   45   99  14  74  89  2  99
+\f0 \
+	|										|\
+	While things are out of order and the pointers  haven\'92t met\
+	recursive base case\
+		\
+	\cf2 void quickSort(int * a, int first, int last)\{\
+\
+		if(last-first < MAX_SIZE)\{\
+			insertSort(()\
+		\}else\{\
+			int p = setMedianOfThree(a, first, last);\
+			\
+			// do the quick sort\
+			// pivot is now at P\
+\
+		//Notes:\
+			// comparison must be outsourced to helper\
+			// exchange must be outsourced to help\
+\
+		//recursive call\
+			quickSort(a, first, p-1);\
+			quickSort(a, p+1, last);\
+		\}\
+\
+	\}\cf0 \
+\
+Natural Merge Sort - theta(nlgn)\
+	-Arrays\
+		-What are the two defining factors of arrays\
+			-Identically sized things stored end to end\
+		-Consequences\
+			-random access\
+\
+binary merge sort - theta(n2)\
+\
+**It can be shown that when you compare 2 items in a list (O(nlgn))\
+\
+countingSort();\
+	\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}
