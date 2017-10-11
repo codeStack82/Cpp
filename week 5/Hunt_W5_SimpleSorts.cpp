@@ -98,9 +98,10 @@ int main(int argc, char * argv[]){
     comparrisonCounter = 0;
     exchangeCounter = 0;
 
-    cout << "\nReverse Array and exchange sort the already sorted array" << endl;
+    cout << "\nReverse array the already sorted array" << endl;
     reverseArray(exchangeSortArray,theArraySize);
     print_Top_and_Btm_Array(exchangeSortArray, theArraySize);
+      cout << "\nExchange sort the reversed sorted array" << endl;
     exchangeSort(exchangeSortArray, theArraySize);
     print_Top_and_Btm_Array(exchangeSortArray, theArraySize);
     cout << "\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
@@ -113,14 +114,14 @@ int main(int argc, char * argv[]){
     copyArray(theArray,insertSortArray, theArraySize);
 
     cout << "\nInsertion Sort~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"<< endl;
-    exchangeSort(insertSortArray, theArraySize);
-    cout << "Insertion sort the array" << endl;
-    print_Top_and_Btm_Array(insertSortArray, theArraySize);
-    cout << "\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
-    cout << "\t# of exchanges:\t\t"      << exchangeCounter      << endl;
-    //zero counters
-    comparrisonCounter = 0;
-    exchangeCounter = 0;
+    // insertionsSort(insertSortArray, theArraySize);
+    // cout << "Insertion sort the array" << endl;
+    // print_Top_and_Btm_Array(insertSortArray, theArraySize);
+    // cout << "\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
+    // cout << "\t# of exchanges:\t\t"      << exchangeCounter      << endl;
+    // //zero counters
+    // comparrisonCounter = 0;
+    // exchangeCounter = 0;
 
     // insertionSort(insertSortArray, theArraySize);
     // cout << "\nInsertion sort the already sorted array" << endl;
