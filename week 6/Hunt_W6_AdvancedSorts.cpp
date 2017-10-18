@@ -6,6 +6,7 @@
 *   Details: Simple Sorts Homework
 *   Reference Timer code: https://solarianprogrammer.com/2012/10/14/cpp-11-timing-code-performance/
 *   Reference Timer code: http://www.informit.com/articles/article.aspx?p=1881386&seqNum=2
+*   Reference material: http://www.geeksforgeeks.org/quick-sort/
 */
 
 #include <iostream>
@@ -26,8 +27,9 @@ void reverseArray(int * theArray, int size);
 void zeroCounters(int &comparrisonCounter, int &exchangeCounter);
 int * getInputData(string fileName);
 
+void quickSort(int * a, int s);
 void quickSort(int * a, int low, int high);
-void setMedianOfThree(int a [], int i, int j);
+int setMedianOfThree(int a [], int i, int j);
 void swap(int *a, int *b);
 
 void mergeSort(int a [], int s, int n);
@@ -79,13 +81,13 @@ int main(int argc, char * argv[]){
  
 
     //Do Stuff here...
-
     cout << "\nStuff...." << endl;
     auto s1 = chrono::steady_clock::now();      //timer code
-        //quickSort(XXXArray, theArraySize);
+        quickSort(list1, 10000);
     auto e1 = chrono::steady_clock::now();      //timer code
     auto d1 = e1 - s1;                          //timer code
-    
+    cout << "\nInput array #1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+    print_Top_and_Btm_Array(list1, size);
     
     cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"<< endl;
     return EXIT_SUCCESS;      
@@ -168,18 +170,44 @@ void print_Top_and_Btm_Array(int * a, int size){
         cout << endl;
 }
 
+void quickSort(int * a, int theArraySize){
+    int low = 0;
+    int high = sizeof(a)/sizeof(a[0]);
+
+    cout << low << " " << high << endl;
+    cout << "Going into quickSort(1,2,3); " << endl;
+
+    quickSort(a, low, high);
+}
+
 void quickSort(int * a, int low, int high){
-    if(low < high){
-        int pivot = setOfMedianThree(a, low, high);
+    int MAX_SIZE = sizeof(a)/sizeof(a[0]);
+
+    cout << "low - high " << low-high << " MAX_SIZE " << MAX_SIZE << endl;
+
+    if(low - high < MAX_SIZE){
+        insertionSort(a, 10000);  //todo: need to fix
+    }else{
+        int pivot = setMedianOfThree(a, low, high);
 
         quickSort(a, low, pivot - 1);
         quickSort(a, pivot + 1, high);
     }
 }
 
-void setMedianOfThree(int a [], int i, int j){
+int setMedianOfThree(int * a , int low, int high){
+    int pivot = a[high];
+    int i = (low - 1);
 
-
+    for (int j = low; j <= high - 1; j++){
+        if (a[j] <= pivot)
+        {
+            i++;   
+            swap(&a[i], &a[j]);
+        }
+    }
+    swap(&a[i + 1], &a[high]);
+    return (i + 1);
 }
 
 void swap(int *a, int *b){
