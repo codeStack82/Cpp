@@ -20,21 +20,20 @@
 using namespace std;
 
 //Prototypes
-void displayArray(int * theArray, int theArraySize);
 void print_Top_and_Btm_Array(int * a, int size);
 void copyArray(int * source, int * destination, int size);
 void reverseArray(int * theArray, int size);
-void swap(int *a, int *b);
-bool inOrder(int a , int b);
 void zeroCounters(int &comparrisonCounter, int &exchangeCounter);
-void exchange(int & a, int & b);
-void exchangeSort(int * a, int s);
-void insertionSort(int * a, int s);         // helper - call the internal array;
-//void insertionSort(int * a, int f, int l);  // worker - from first to last - 1
-void selectionSort(int * a, int s);         
-
 int * getInputData(string fileName);
 
+void quickSort(int * a, int low, int high);
+void setMedianOfThree(int a [], int i, int j);
+void swap(int *a, int *b);
+
+void mergeSort(int a [], int s, int n);
+void radixSort(int a [], int s);
+void countingSort(int a [], int s);
+void insertionSort(int * a, int s);   
 
 //Global variables
 int exchangeCounter;
@@ -42,7 +41,7 @@ int comparrisonCounter;
 
 int main(int argc, char * argv[]){
 
-    cout << "\n~~~~~~~~~~~~ Simple Sorts Homework - Advanced C++ Week 5 ~~~~~~~~~~~~" << endl;
+    cout << "\n~~~~~~~~~~~~ Simple Sorts Homework - Advanced C++ Week 5 ~~~~~~~~~~~~~~" << endl;
     string fileName1, fileName2, fileName3;
     
     // Get file name - test cmd input 
@@ -79,6 +78,13 @@ int main(int argc, char * argv[]){
     print_Top_and_Btm_Array(list3, size);
  
 
+    //Do Stuff here...
+
+    cout << "\nStuff...." << endl;
+    auto s1 = chrono::steady_clock::now();      //timer code
+        //quickSort(XXXArray, theArraySize);
+    auto e1 = chrono::steady_clock::now();      //timer code
+    auto d1 = e1 - s1;                          //timer code
     
     
     cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"<< endl;
@@ -105,7 +111,7 @@ void zeroCounters(int &comparrisonCounter, int &exchangeCounter){
     exchangeCounter= 0;
 }
 
-int * getInputData(string fileName){ //TODO: fix file input size here <<----
+int * getInputData(string fileName){ //TODO: fix file input size here <<---- possible with a ref var
 
     // Open file stream
     ifstream fin;
@@ -160,4 +166,44 @@ void print_Top_and_Btm_Array(int * a, int size){
         }
     }
         cout << endl;
+}
+
+void quickSort(int * a, int low, int high){
+    if(low < high){
+        int pivot = setOfMedianThree(a, low, high);
+
+        quickSort(a, low, pivot - 1);
+        quickSort(a, pivot + 1, high);
+    }
+}
+
+void setMedianOfThree(int a [], int i, int j){
+
+
+}
+
+void swap(int *a, int *b){
+    int temp = *a;
+	*a = *b;
+	*b = temp;
+    exchangeCounter++;
+}
+
+void mergeSort(int a [], int s, int n = false){}
+void radixSort(int a [], int s){}
+void countingSort(int a [], int s){}
+
+void insertionSort(int * arr, int n){
+    int i, key, j;
+    for (i = 1; i < n; i++){
+        key = arr[i];
+        j = i-1;
+        while (j >= 0 && arr[j] > key){
+            arr[j+1] = arr[j];
+            j = j-1;
+            comparrisonCounter++;
+        }
+        arr[j+1] = key;
+        exchangeCounter++;
+    }
 }
