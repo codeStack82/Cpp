@@ -48,10 +48,10 @@ int comparrisonCounter;
 
 int main(int argc, char * argv[]){
 
-    cout << "\n~~~~~~~~~~~~ Simple Sorts Homework - Advanced C++ Week 5 ~~~~~~~~~~~~~~" << endl;
+    cout << "\n~~~~~~~~~~~~ Advanced Sorts Homework - Advanced C++ Week 6 ~~~~~~~~~~~~~~" << endl;
     string fileName1, fileName2, fileName3;
     int numToPrint = 60;
-    int size = 1000000; //todo: fix the input size.
+    int size = 1000000; 
 
     // Get file name - test cmd input 
     if(argc >= 4){     
@@ -96,7 +96,7 @@ int main(int argc, char * argv[]){
     print_Top_and_Btm_Array(quickSortIterativeArray, size, numToPrint);
     cout << "\n\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
     cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
-    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d).count() <<  " ms"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
+    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d).count()/ 1000 <<  " sec"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
 
     // Quick sort recursive
     int * quickSortRecursiveArray = new int[size];
@@ -110,7 +110,7 @@ int main(int argc, char * argv[]){
     print_Top_and_Btm_Array(quickSortRecursiveArray, size, numToPrint);
     cout << "\n\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
     cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
-    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d1).count() <<  " ms"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
+    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d1).count()/1000 <<  " sec"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
 
     // Merge Sort
     int * mergeSortArray = new int[size];
@@ -124,7 +124,7 @@ int main(int argc, char * argv[]){
     print_Top_and_Btm_Array(mergeSortArray, size, numToPrint);
     cout << "\n\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
     cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
-    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d2).count() <<  " ms"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
+    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d2).count() /1000 <<  " sec"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
 
 
     // Radix Sort
@@ -139,10 +139,9 @@ int main(int argc, char * argv[]){
     print_Top_and_Btm_Array(radixSortArray, size, numToPrint);
     cout << "\n\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
     cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
-    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d3).count() <<  " ms"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
+    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d3).count()/1000 <<  " sec"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
 
-
-    cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"<< endl;
+    cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"<< endl;
 
     return EXIT_SUCCESS;      
 }
