@@ -28,10 +28,11 @@ void reverseArray(int * theArray, int size);
 void zeroCounters(int &comparrisonCounter, int &exchangeCounter);
 int * getInputData(string fileName);
 
-void quickSortIterative (int arr[], int l, int h);
-void quickSort(int * a, int s);
-void quickSort(int * a, int low, int high);
-int  setMedianOfThree(int a [], int i, int j);
+void quickSort_Call(int * a, int s, int n);
+void quickSort_Sub(int a[], int low, int high);
+void quickSort_Main(int * a, int low, int high);
+int  partition(int a [], int i, int j, int p);
+int  medianOf3(int a[], int left, int right);
 void swap(int *a, int *b);
 
 void mergeSort(int * a, int l, int r);
@@ -48,9 +49,9 @@ int comparrisonCounter;
 
 int main(int argc, char * argv[]){
 
-    cout << "\n~~~~~~~~~~~~ Advanced Sorts Homework - Advanced C++ Week 6 ~~~~~~~~~~~~~~" << endl;
+    cout << "\n~~~~~~~~ Advanced Sorts Homework Worksheet - Advanced C++ Week 6 ~~~~~~~~~~" << endl;
     string fileName1, fileName2, fileName3;
-    int numToPrint = 60;
+    int numToPrint = 40;
     int size = 1000000; 
 
     // Get file name - test cmd input 
@@ -84,63 +85,63 @@ int main(int argc, char * argv[]){
     cout << "\nInput array #3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
     print_Top_and_Btm_Array(list3, size, numToPrint);
 
-    // Quick sort iterative
-    int * quickSortIterativeArray = new int[size];
-    copyArray(list1 , quickSortIterativeArray, size);
 
-    auto s = chrono::steady_clock::now();      //timer code
-        quickSort(quickSortIterativeArray, size);
-    auto e = chrono::steady_clock::now();      //timer code
-    auto d = e - s;                            //timer code
-    cout << "\nQuick Sort Iterative ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
-    print_Top_and_Btm_Array(quickSortIterativeArray, size, numToPrint);
-    cout << "\n\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
-    cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
-    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d).count()/ 1000 <<  " sec"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
+    cout << "Quick Sort Without setOfMedianThree~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"<< endl;
+    // Quick sort - random
+    size = 5000;
+    while(size < 50000){
+        int * quickSortArray = new int[size];
+        copyArray(list1 , quickSortArray, size);
 
-    // Quick sort recursive
-    int * quickSortRecursiveArray = new int[size];
-    copyArray(list1 , quickSortRecursiveArray, size);
+        auto s = chrono::steady_clock::now();                   // timer code
+            quickSort_Call(quickSortArray, size, 2);            // quickSort 
+        auto e = chrono::steady_clock::now();                   // timer code
+        auto d = e - s;                                         // timer code
 
-    auto s1 = chrono::steady_clock::now();      //timer code
-        quickSort(quickSortRecursiveArray, size);
-    auto e1 = chrono::steady_clock::now();      //timer code
-    auto d1 = e1 - s1;                          //timer code
-    cout << "\nQuick Sort Recursive ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
-    print_Top_and_Btm_Array(quickSortRecursiveArray, size, numToPrint);
-    cout << "\n\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
-    cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
-    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d1).count()/1000 <<  " sec"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
+        cout << "\nQuick Sort - Random Array ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+        cout << "Array Size: " << size << endl;
+        //print_Top_and_Btm_Array(quickSortArray, size, numToPrint);
+        cout << "\n\t# of comparisons:\t"      << comparrisonCounter   << endl;
+        cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
+        cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d).count() <<  " ms"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
+        size +=5000;
+    }   
 
     // Merge Sort
-    int * mergeSortArray = new int[size];
-    copyArray(list1 , mergeSortArray, size);
+    size = 50000;
+    while (size < 100000){
+        int * mergeSortArray = new int[size];
+        copyArray(list1 , mergeSortArray, size);
 
-    auto s2 = chrono::steady_clock::now();      //timer code
-        mergeSort(mergeSortArray, 0, size);
-    auto e2 = chrono::steady_clock::now();      //timer code
-    auto d2 = e2 - s2;                          //timer code
-    cout << "\nMerge Sort~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
-    print_Top_and_Btm_Array(mergeSortArray, size, numToPrint);
-    cout << "\n\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
-    cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
-    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d2).count() /1000 <<  " sec"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
-
+        auto s2 = chrono::steady_clock::now();      //timer code
+            mergeSort(mergeSortArray, 0, size);
+        auto e2 = chrono::steady_clock::now();      //timer code
+        auto d2 = e2 - s2;                          //timer code
+        cout << "\nMerge Sort~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+        //print_Top_and_Btm_Array(mergeSortArray, size, numToPrint);
+        cout << "\n\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
+        cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
+        cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d2).count() <<  " ms"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
+        size += 50000;
+    }
 
     // Radix Sort
-    int * radixSortArray = new int[size];
-    copyArray(list1 , radixSortArray, size);
+    size = 50000;
+    while(size <= 1000000){
+        int * radixSortArray = new int[size];
+        copyArray(list1 , radixSortArray, size);
 
-    auto s3 = chrono::steady_clock::now();      //timer code
-        radixSort(radixSortArray, size);
-    auto e3 = chrono::steady_clock::now();      //timer code
-    auto d3 = e3 - s3;                          //timer code
-    cout << "\nRadix Sort~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
-    print_Top_and_Btm_Array(radixSortArray, size, numToPrint);
-    cout << "\n\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
-    cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
-    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d3).count()/1000 <<  " sec"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
-
+        auto s3 = chrono::steady_clock::now();      //timer code
+            radixSort(radixSortArray, size);
+        auto e3 = chrono::steady_clock::now();      //timer code
+        auto d3 = e3 - s3;                          //timer code
+        cout << "\nRadix Sort~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+        //print_Top_and_Btm_Array(radixSortArray, size, numToPrint);
+        cout << "\n\t# of comaprrisons:\t"     << comparrisonCounter   << endl;
+        cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
+        cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d3).count()/1000 <<  " sec"  << endl; zeroCounters(comparrisonCounter, exchangeCounter);
+        size += 50000;
+    }
     cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"<< endl;
 
     return EXIT_SUCCESS;      
@@ -223,6 +224,7 @@ void print_Top_and_Btm_Array(int * a, int size, int n){
         cout << endl;
 }
 
+
 void insertionSort(int * arr, int n){
     int i, key, j;
     for (i = 1; i < n; i++){
@@ -238,86 +240,128 @@ void insertionSort(int * arr, int n){
     }
 }
 
-void quickSortIterative (int arr[], int l, int h){ 
-    //http://www.geeksforgeeks.org/iterative-quick-sort/
-    // Create an auxiliary stack
-    int stack[ h - l + 1 ];
- 
-    // initialize top of stack
-    int top = -1;
- 
-    // push initial values of l and h to stack
-    stack[ ++top ] = l;
-    stack[ ++top ] = h;
- 
-    // Keep popping from stack while is not empty
-    while ( top >= 0 )
-    {
-        // Pop h and l
-        h = stack[ top-- ];
-        l = stack[ top-- ];
- 
-        // Set pivot element at its correct position
-        // in sorted array
-        int p = setMedianOfThree( arr, l, h );
- 
-        // If there are elements on left side of pivot,
-        // then push left side to stack
-        if ( p-1 > l )
-        {
-            stack[ ++top ] = l;
-            stack[ ++top ] = p - 1;
-        }
- 
-        // If there are elements on right side of pivot,
-        // then push right side to stack
-        if ( p+1 < h )
-        {
-            stack[ ++top ] = p + 1;
-            stack[ ++top ] = h;
-        }
+void quickSort_Call(int * a, int size, int n){
+    int low = 0;
+    int high = size;
+
+    if(n == 1){
+        quickSort_Sub(a, low, high);
+    }else if(n == 2){
+        quickSort_Main(a, low, high);
     }
 }
 
-void quickSort(int * a, int theArraySize){
-    int low = 0;
-    int high = theArraySize;
+void quickSort_Sub(int a[], int low, int high) {
+    //http://people.cs.ubc.ca/~harrison/Java/QSortAlgorithm.java.html
+	int lo = low;
+	int hi = high;
 
-    quickSort(a, low, high);
-}
-
-void quickSort(int * a, int low, int high){
-    // int MAX_SIZE = sizeof(a)/sizeof(a[0]);
-
-    // cout << "low - high " << low-high << " MAX_SIZE " << MAX_SIZE << endl;
-
-    // if(low - high < MAX_SIZE){
-    //     insertionSort(a, 10000);  //todo: need to fix
-    // }else{
-        if (low < high){
-            int pivot = setMedianOfThree(a, low, high);
-
-            quickSort(a, low, pivot - 1);
-            quickSort(a, pivot + 1, high);
+	if (lo >= hi) {
+        comparrisonCounter++;
+	    return;
+	}else if( lo == hi - 1 ) {
+         comparrisonCounter++;
+        if (a[lo] > a[hi]) {
+            comparrisonCounter++;
+            int T = a[lo];
+            a[lo] = a[hi];
+            a[hi] = T;
         }
-    //}
+        return;
+	}
+    /*
+    *  Pick a pivot and move it out of the way
+    */
+	int pivot = a[(lo + hi) / 2];
+        a[(lo + hi) / 2] = a[hi];
+        a[hi] = pivot;
+
+        comparrisonCounter++;
+        while( lo < hi ) {
+            /*
+             *  Search forward from a[lo] until an element is found that
+             *  is greater than the pivot or lo >= hi 
+             */
+            while (a[lo] <= pivot && lo < hi) {
+                comparrisonCounter += 2;
+		        lo++;
+	        }
+
+            /*
+             *  Search backward from a[hi] until element is found that
+             *  is less than the pivot, or lo >= hi
+             */
+            while (pivot <= a[hi] && lo < hi ) {
+                comparrisonCounter += 2;
+                hi--;
+            }
+
+            /*
+             *  Swap elements a[lo] and a[hi]
+             */
+            comparrisonCounter++;
+            if( lo < hi ) {
+                int T = a[lo];
+                a[lo] = a[hi];
+                a[hi] = T;
+                exchangeCounter++;
+            }
+	}
+
+    a[high] = a[hi];
+    a[hi] = pivot;
+
+	quickSort_Sub(a, low, lo-1);
+	quickSort_Sub(a, hi+1, high);
 }
 
-int setMedianOfThree(int * a , int low, int high){
-    int pivot = a[high];
+void quickSort_Main(int * a, int low, int high){
+    int size = high - low + 1;
+    if (size <= 28){
+        insertionSort(a, high);
+    }else {
+        int median = medianOf3(a, low, high); 
+        int pivot = partition(a, low, high, median);
+
+        quickSort_Main(a, low, pivot - 1);
+        quickSort_Main(a, pivot + 1, high);
+   }
+}
+
+int partition(int * a , int low, int high, int pivot){
     int i = (low - 1);
 
     for (int j = low; j <= high - 1; j++){
-        comparrisonCounter++;   //compare everything in loop
+        comparrisonCounter++;  
         if (a[j] <= pivot){
             i++;   
             swap(&a[i], &a[j]);
-            exchangeCounter++;  //exchange vars
         }
     }
     swap(&a[i + 1], &a[high]);
-    exchangeCounter++;          //exchange vars
     return (i + 1);
+}
+
+int medianOf3(int a[], int left, int right) {
+    int center = (left + right) / 2;
+
+    if (a[left] > a[center]){
+        comparrisonCounter++;  
+        swap(&a[left], &a[center]);
+    }
+
+    if (a[left] > a[right]){
+        comparrisonCounter++;  
+        swap(&a[left], &a[right]);
+    }
+
+    if (a[center] > a[right]){
+        comparrisonCounter++;  
+        swap(&a[center], &a[right]);
+    }
+    comparrisonCounter++;  
+    swap(&a[center], &a[right - 1]);
+    return a[right - 1];
 }
 
 void swap(int *a, int *b){
@@ -326,6 +370,7 @@ void swap(int *a, int *b){
 	*b = temp;
     exchangeCounter++;
 }
+
  
 void mergeSort(int * arr, int l, int r){
     if (l < r){
@@ -390,6 +435,7 @@ void radixSort(int arr[], int n){
 
     for (int exp = 1; m/exp > 0; exp *= 10)
         countSort(arr, n, exp);
+
 }
 
 void countSort(int arr[], int n, int exp){
@@ -417,6 +463,7 @@ void countSort(int arr[], int n, int exp){
     // contains sorted numbers according to current digit
     for (i = 0; i < n; i++){
         arr[i] = output[i];
+        exchangeCounter++;
     }
 }
 

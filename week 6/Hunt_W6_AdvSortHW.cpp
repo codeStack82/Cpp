@@ -221,41 +221,54 @@ int main(int argc, char * argv[]){
 
     cout << "\nAnalysis 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"<< endl;
 
-    // Quick sort with insertion Sort - random
-    size = 1000000;
-    int * quickSortArray2 = new int[size];
-    copyArray(list3, quickSortArray2, size);
+    // // Quick sort with insertion Sort - random
+    // size = 1000000;
+    // int * quickSortArray2 = new int[size];
+    // copyArray(list3, quickSortArray2, size);
   
-    // Quick sort - sorted
-    size = 1000000;
-    auto s8 = chrono::steady_clock::now();              // timer code
-         quickSort_Call(quickSortArray2, size, 2);      // quickSort
-    auto e8 = chrono::steady_clock::now();              // timer code
-    auto d8 = e8 - s8;                                  // timer code
+    // // Quick sort - sorted
+    // size = 1000000;
+    // auto s8 = chrono::steady_clock::now();              // timer code
+    //      quickSort_Call(quickSortArray2, size, 2);      // quickSort
+    // auto e8 = chrono::steady_clock::now();              // timer code
+    // auto d8 = e8 - s8;                                  // timer code
 
-    cout << "\nQuick Sort with InsertSort on Random Array ~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+    // cout << "\nQuick Sort with InsertSort on Random Array ~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+    // cout << "Array Size: " << size << endl;
+    // print_Top_and_Btm_Array(quickSortArray2, size, numToPrint);
+    // cout << "\n\t# of comparisons:\t"      << comparisonsCounter   << endl;
+    // cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
+    // cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d8).count()/1000 <<  " sec"  << endl; zeroCounters(comparisonsCounter, exchangeCounter);
+
+    // Quick sort with insertion Sort - random
+    // size = 1000000;
+    // auto s9 = chrono::steady_clock::now();              // timer code
+    //      quickSort_Call(quickSortArray, size, 2);      // quickSort
+    // auto e9 = chrono::steady_clock::now();              // timer code
+    // auto d9 = e9 - s9;                                  // timer code
+
+    // cout << "\nQuick Sort with InsertSort on Sorted Array ~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+    // cout << "Array Size: " << size << endl;
+    // print_Top_and_Btm_Array(quickSortArray, size, numToPrint);
+    // cout << "\n\t# of comparisons:\t"      << comparisonsCounter   << endl;
+    // cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
+    // cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d9).count()/1000 <<  " sec"  << endl; zeroCounters(comparisonsCounter, exchangeCounter);
+
+      // Quick sort with insertion Sort - random
+    size = 1000000;
+    auto s10 = chrono::steady_clock::now();              // timer code
+         quickSort_Call(list2, size, 2);      // quickSort
+    auto e10 = chrono::steady_clock::now();            // timer code
+    auto d10 = e10 - s10;                                  // timer code
+
+    cout << "\nQuick Sort with InsertSort on Sorted Array ~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
     cout << "Array Size: " << size << endl;
-    print_Top_and_Btm_Array(quickSortArray2, size, numToPrint);
+    print_Top_and_Btm_Array(list2, size, numToPrint);
     cout << "\n\t# of comparisons:\t"      << comparisonsCounter   << endl;
     cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
-    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d8).count()/1000 <<  " sec"  << endl; zeroCounters(comparisonsCounter, exchangeCounter);
+    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d10).count()/1000 <<  " sec"  << endl; zeroCounters(comparisonsCounter, exchangeCounter);
 
-    cout << "\nQuick Sort - Sorted Array ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
-    cout << "Array Size: " << size << endl;
-    print_Top_and_Btm_Array(quickSortArray, size, numToPrint);
-    cout << "\n\t# of comparisons:\t"      << comparisonsCounter   << endl;
-    cout << "\t# of exchanges:\t\t"        << exchangeCounter      << endl;
-    cout << "\tElapsed time:\t\t"<< chrono::duration <double, milli> (d1).count()/1000 <<  " sec"  << endl; zeroCounters(comparisonsCounter, exchangeCounter);
-
-    // Quick sort - reversed
-    size = 1000000;
-    reverseArray(quickSortArray, size);
-    cout << "\nArray Reversed" << endl;
-    auto s2 = chrono::steady_clock::now();                  // timer code
-        quickSort_Call(quickSortArray, size, 1);           // quickSort
-    auto e2 = chrono::steady_clock::now();                  // timer code
-    auto d2 = e2 - s2;                                      // timer code
-
+    
 
 
     return EXIT_SUCCESS;      
@@ -353,7 +366,7 @@ void quickSort_Sub(int a[], int low, int high) {
 
 void quickSort_Main(int * a, int low, int high){
     int size = high - low + 1;
-    if (size <= 7500){
+    if (size <= 10000){
         insertionSort(a, high);
     }else {
         int median = medianOf3(a, low, high); 
@@ -426,7 +439,7 @@ void zeroCounters(long long int  &comparisonsCounter, long long int &exchangeCou
     exchangeCounter= 0;
 }
 
-int * getInputData(string fileName){ //TODO: fix file input size here <<---- possible with a ref var
+int * getInputData(string fileName){ 
 
     // Open file stream
     ifstream fin;

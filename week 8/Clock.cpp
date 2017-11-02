@@ -30,5 +30,5 @@ void Clock::setTime(int theTime){
 }
 
 void Clock::doSomething(){
-    cout << "Clock is doing something now..." < ,endl;
+    cout << "Clock is doing something now..." << endl;
 }

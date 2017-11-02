@@ -16,3 +16,7 @@ ClockRadio::ClockRadio():Clock(),StereoRadio(){}
 ClockRadio::ClockRadio(int theTime, double theStation):Clock(),Radio(){
     Clock(theTime), StereoRadio(theStation)
 }
+
+void ClockRadio::doSomething(){
+    
+}
