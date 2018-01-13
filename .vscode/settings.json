@@ -1,5 +1,9 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "editor.wrappingColumn": 100,
-    "extensions.autoUpdate": true
+    "extensions.autoUpdate": true,
+    "files.associations": {
+        "iostream": "cpp",
+        "iosfwd": "cpp",
+        "exception": "cpp"
+    }
 }

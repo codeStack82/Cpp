@@ -1,0 +1,18 @@
+﻿  ZooGame.cpp
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(561): warning C4566: character represented by universal-character-name '\u2680' cannot be represented in the current code page (1252)
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(562): warning C4566: character represented by universal-character-name '\u2681' cannot be represented in the current code page (1252)
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(563): warning C4566: character represented by universal-character-name '\u2682' cannot be represented in the current code page (1252)
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(564): warning C4566: character represented by universal-character-name '\u2683' cannot be represented in the current code page (1252)
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(565): warning C4566: character represented by universal-character-name '\u2684' cannot be represented in the current code page (1252)
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(566): warning C4566: character represented by universal-character-name '\u2685' cannot be represented in the current code page (1252)
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(578): warning C4566: character represented by universal-character-name '\u2680' cannot be represented in the current code page (1252)
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(581): warning C4566: character represented by universal-character-name '\u2681' cannot be represented in the current code page (1252)
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(584): warning C4566: character represented by universal-character-name '\u2682' cannot be represented in the current code page (1252)
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(587): warning C4566: character represented by universal-character-name '\u2683' cannot be represented in the current code page (1252)
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(590): warning C4566: character represented by universal-character-name '\u2684' cannot be represented in the current code page (1252)
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(593): warning C4566: character represented by universal-character-name '\u2685' cannot be represented in the current code page (1252)
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(1268): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(595): warning C4715: 'getLogo': not all control paths return a value
+c:\users\prashant\documents\visual studio 2015\projects\zoogame\zoogame\zoogame.cpp(1416): warning C4715: 'guessAnimal': not all control paths return a value
+  ZooGame.vcxproj -> C:\Users\Prashant\Documents\Visual Studio 2015\Projects\ZooGame\Debug\ZooGame.exe
+  ZooGame.vcxproj -> C:\Users\Prashant\Documents\Visual Studio 2015\Projects\ZooGame\Debug\ZooGame.pdb (Partial PDB)

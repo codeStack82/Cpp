@@ -36,7 +36,7 @@ int main(int argc, char** argv)
 void greetingMsg()
 {   //Contract:
         //Program header
-	cout << "\n~~~~~~~~~~~~ Advanced C++ Group Project - OCCC Fall 2017 ~~~~~~~~~~~~" << endl;
+	cout << "\n~~~~~~~~~~~~Group Project - Fall 2017 ~~~~~~~~~~~~" << endl;
 }
 
 int getGameSelection()
@@ -95,7 +95,7 @@ void goToGame(int gameNum)
 }
 
 //Tyler's Dice Game'
-void DiceGame()
+void DiceGame(int * scores, string players)
 { //Contract 
         //  @notes:     Begin playing Dice Game
         //  @return     void

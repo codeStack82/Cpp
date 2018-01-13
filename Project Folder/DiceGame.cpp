@@ -1,36 +1,28 @@
 /*
 * Team Members
 *   Tyler Hunt - Dice Game
-*   Zabrina Antry
-*   Tam Pham
-*   Prashant Panth
-
-* Advanved C++ Group Project -OCCC Fall 2017
-*   Due: 12/09/17
-
-*Reference Material
-*   C++ Reference - https://www.tutorialspoint.com/cplusplus/passing_parameters_by_references.htm
-*   Dice Rules - https://en.wikipedia.org/wiki/Dice_10000#Play
 */
 
-#include "MainMenu.h"
+#include <string>
+#include <iostream>
+using namespace std;
 
-String DiceGame();
-int numberOfPlayers();
+void DiceGame(int scores[], string players[]);
 void diceHeader();
 void diceLogos();
 void diceRules();
 void diceHowTo();
 
-using namespace std;
-
 //Main
-int main(int argc, char** argv){
+int main(int argc, char** argv){ 
 
-    String winnerInfo = "";
-    DiceGame();
+    // Examples of the player and score info to be passed in to the dice game
+    int scores[2] = {0,0};
+    string players[2] = {"Ty","Tom"};
+
+    DiceGame(scores, players);
+
    
-
     return EXIT_SUCCESS;
 }
 
@@ -40,51 +32,23 @@ void greetingMsg()
 	cout << "\n~~~~~~~~~~~~ Welcome to the Dice Game ~~~~~~~~~~~~" << endl;
 }
 
-int numberOfPlayers()
-{   //Contract 
-        //  @notes:     Display options, prompt user to make selection 
-        //  @return     int, user selection
-
-    cout << "\nPlease enter the number of players that wish to play: " << endl;
-
-    string in = "";
-	int input = 0;
-
-	try {
-		//Get user input
-		cin >> in;
-
-		//Convert to integer
-		input = atoi(in.c_str());
-
-	}
-	catch (exception e) {
-		//Handle exception
-		cout << "\tApparently, you didn't read the instructions....?" << endl;
-		cout << "\tPlease try again....or not!" << endl;
-	}
-	return input;
-}
-
-
 //Tyler's Dice Game'
-string DiceGame()
+void DiceGame(int * scores, string * players)
 { //Contract 
         //  @notes:     Begin playing Dice Game
-        //  @return     void
+        //  @return     scores and players info
 
     diceHeader();
-    //Player p1 = new Player(1,"Ty");
-        //todo: start game message
-            //todo: in <- get number of players
-            //todo: create scoreboard 
-        //todo: begin game
-            //todo: roll dice -> funct
-            //todo: get user dice selection <-> funct
-            //todo: accumulate score for user -> funct
-            //todo: go to next player....
-            // create winner board....and snarky messages as game progresses....
-
+        //todo: Dice Game 
+        // •	Game will be a normal dice game to 10,000.
+        //       This will be a 2 player game
+        //     o	Each player will roll the dice and be able to select the dice they want to keep 
+        //     o	Scores will be added to their overall score
+        // •	There will only be 2 players
+        //     o	The player info will be passed in from the main entry into the program
+        //         ♣	diceGame(Int * scores, string  * player)
+        //     o	at the end of the game the players scores will be passed back to the main program where they will be aggregated into a scoreboard
+        // •	There will have to be a few options from menu so the players can chose to ask for help, ask for instruction, or exit the game and return to the main menu, if game is exited early (before completion) then no scores will be saved
 }
 
 void diceHeader()
